@@ -1,0 +1,27 @@
+<?php
+
+	// The script for the meta.json endpoint
+
+	require_once("framework.php");
+	require_once("config.php");
+
+	header("Content-Type: application/json");
+
+	$config['publication_api_version'] = '1.0';
+
+	// This line auto-detects whether or not you have put code in the /configure/index.php endpoint.
+	if ($config['external_configuration'] == 'default' || $config['external_configuration'] == '')
+			if (filesize('configure/index.php') <= 334) $config['external_configuration'] = 'false'; else $config['external_configuration'] = 'true';
+
+	echo '{'."\n";
+	echo '	"owner_email": "', $config['owner_email'], '",'."\n";
+	echo '	"publication_api_version": "', $config['publication_api_version'], '",'."\n";
+	echo '	"name": "', $config['name'], '",'."\n";
+	echo '	"description": "', $config['description'], '",'."\n";
+	echo '	"delivered_on": "', $config['delivered_on'], '",'."\n";
+	echo '	"external_configuration": "', $config['external_configuration'], '",'."\n";
+	echo '	"send_timezone_info": "', $config['send_timezone_info'], '",'."\n";
+	echo '	"send_delivery_count": "', $config['send_delivery_count'], '",'."\n";
+
+
+?>
